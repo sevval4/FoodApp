@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    tools:context=".BedenTakipFragment">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="141dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="10dp"
+        android:text="Beden Takip Tablosu" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="137dp"
+        android:layout_height="551dp"
+        android:layout_gravity="top|end"
+        android:layout_marginEnd="30dp"
+        android:paddingBottom="70dp"
+        android:src="@drawable/urban_line_human_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Güncel Ölçüler -->
+        <EditText
+            android:id="@+id/editTextGuncelTarih"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="TARİH" />
+
+        <EditText
+            android:id="@+id/editTextGuncelKol"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="KOL" />
+
+        <EditText
+            android:id="@+id/editTextGuncelGogus"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="GÖĞÜS" />
+
+        <EditText
+            android:id="@+id/editTextGuncelKalca"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="KALÇA" />
+
+        <EditText
+            android:id="@+id/editTextGuncelUstBacak"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="ÜST BACAK" />
+
+        <EditText
+            android:id="@+id/editTextGuncelBaldır"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="BALDIR" />
+
+        <EditText
+            android:id="@+id/editTextGuncelBel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="BEL" />
+
+        <!-- Kaydet Düğmesi -->
+
+        <!-- Beden Takip Tablosu -->
+        <Button
+            android:id="@+id/buttonKaydet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:text="Kaydet" />
+
+        <TableLayout
+            android:id="@+id/tableLayoutBedenTakip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <!-- Başlık Satırı -->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="TARİH"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="KOL"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="GÖĞÜS"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="KALÇA"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="ÜST BACAK"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="BALDIR"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="BEL"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

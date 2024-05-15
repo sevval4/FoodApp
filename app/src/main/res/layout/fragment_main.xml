@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFB0BBC6"
+    android:orientation="vertical"
+    tools:context=".MainFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/root_layout"
+            android:layout_width="393dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
+            tools:ignore="MissingConstraints">
+
+            <!-- İlk satır -->
+
+            <LinearLayout
+                android:id="@+id/kahvalti_layout"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#5D676C"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/_0204017_food_vegetable_healthy_fresh_lunch_icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Kahvaltı"
+                    android:textColor="#FFFBFB"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="48dp"
+                    android:layout_height="52dp"
+                    android:text="252 Kalori"
+                    android:textAlignment="textEnd"
+                    android:textColor="#F3EEEE" />
+
+                <ImageView
+                    android:id="@+id/btn_kahvalti"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/_16371_plus_icon" />
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#87949A"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/root2_layout"
+            android:layout_width="393dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/root_layout"
+            tools:ignore="MissingConstraints">
+
+            <!-- İlk satır -->
+
+            <LinearLayout
+                android:id="@+id/pgşe_layout"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#5D676C"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/_0204046_food_vegetable_healthy_fresh_lunch_icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Öğle Yemeği"
+                    android:textColor="#FFFBFB"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView82"
+                    android:layout_width="48dp"
+                    android:layout_height="52dp"
+                    android:text="300 Kalori"
+                    android:textAlignment="textEnd"
+                    android:textColor="#F3EEEE" />
+
+                <ImageView
+                    android:id="@+id/btn_ogle"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/_16371_plus_icon" />
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewOgle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#87949A"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="100dp"
+            android:text="GÜNLÜK TÜKETİM MİKTARI"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/root3_layout"
+            android:layout_width="393dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/root2_layout"
+            tools:ignore="MissingConstraints">
+
+            <!-- İlk satır -->
+
+            <LinearLayout
+                android:id="@+id/aksam_layout"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#5D676C"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/_315985_breakfast_dinner_food_lunch_restaurant_icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Aksam Yemeği"
+                    android:textColor="#FFFBFB"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="48dp"
+                    android:layout_height="52dp"
+                    android:text="400 Kalori"
+                    android:textAlignment="textEnd"
+                    android:textColor="#F3EEEE" />
+
+                <ImageView
+                    android:id="@+id/btn_aksam"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/_16371_plus_icon" />
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAksam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#87949A"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_profil"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="27dp"
+            android:src="@drawable/_703062_user_account_profile_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/root4_layout"
+            android:layout_width="393dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/root2_layout"
+            tools:ignore="MissingConstraints">
+
+            <!-- İlk satır -->
+
+            <LinearLayout
+                android:id="@+id/su_layout"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#5D676C"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/_035525_water_outline_icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Su"
+                    android:textColor="#FFFBFB"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView0"
+                    android:layout_width="48dp"
+                    android:layout_height="52dp"
+                    android:text="3 litre"
+                    android:textAlignment="textEnd"
+                    android:textColor="#F3EEEE" />
+
+                <ImageView
+                    android:id="@+id/btn_su"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/_16371_plus_icon" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="393dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="290dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
+            tools:ignore="MissingConstraints">
+
+            <!-- İlk satır -->
+
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#5D676C"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/_118213_dumbbell_exercise_fitness_muscle_weight_icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Egzersiz Ekle"
+                    android:textColor="#FFFBFB"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="52dp"
+                    android:text="3 litre"
+                    android:textAlignment="textEnd"
+                    android:textColor="#F3EEEE" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/_16371_plus_icon" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#191717"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_profil">
+
+            <TextView
+                android:id="@+id/txt_kalan_kalori"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|top"
+                android:layout_weight="1"
+                android:background="#10253C"
+                android:text="Kalan Kalori"
+                android:textColor="#FAF1F1"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txt_kalan_kalori_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_weight="1"
+                android:background="#10253C"
+                android:text="2000"
+                android:textAlignment="textEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="#191717"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+            <TextView
+                android:id="@+id/txt_alinan_kalori"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#10253C"
+                android:text="Alınan Kalori"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txt_alinan_kalori_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_weight="1"
+                android:background="#10253C"
+                android:text="180"
+                android:textAlignment="textEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "22312611861",
+    "project_id": "fitdojo-19784",
+    "storage_bucket": "fitdojo-19784.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22312611861:android:6f58ec0eb8f85fe80dde1c",
+        "android_client_info": {
+          "package_name": "com.example.fitdojo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2YzfkQq5KmUAe7XibA4wGk7sUp_57XOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22312611861:android:812800c453b37a710dde1c",
+        "android_client_info": {
+          "package_name": "com.example.foodapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2YzfkQq5KmUAe7XibA4wGk7sUp_57XOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
