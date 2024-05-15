@@ -26,7 +26,7 @@ import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 
 
 class MainActivity : AppCompatActivity() {
-    val db = FirebaseFirestore.getInstance()
+    //val db = FirebaseFirestore.getInstance()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -34,19 +34,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //val veri=intent.getStringExtra("veri")
-        //val veri = intent.getStringExtra("veri")
-        //getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer,SuFragment()).commit()
+        val veri = intent.getStringExtra("veri") ?: ""
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        val veri = intent.getStringExtra("veri") ?: "" // null ise boş bir string olarak atanır
         val fragment = MainFragment().apply {
             arguments = Bundle().apply {
                 putString("veri", "gönderilecek veri $veri")
@@ -56,10 +47,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
-
-
-
-
 
         binding.datePickerEditText.setOnClickListener {
             val datePickerDialog = DatePickerDialog(
@@ -74,8 +61,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment)
                 .commit()
         }
-
-
 
         binding.bottomNavigation.apply {
             add(CurvedBottomNavigation.Model(1, "Main", R.drawable._290849_document_done_excellent_list_note_icon))
@@ -96,6 +81,7 @@ class MainActivity : AppCompatActivity() {
 
             show(1) // İlk başta hangi öğenin seçili olacağını belirtiyoruz
         }
+
         supportFragmentManager.addOnBackStackChangedListener {
             val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
             if (currentFragment is KategoriFragment) {
