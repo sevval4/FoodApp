@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B0BBC6"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
 
@@ -16,15 +16,17 @@
 
         app:layout_constraintBottom_toBottomOf="@id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
         android:id="@+id/bottomNavigation"
         android:layout_width="389dp"
         android:layout_height="76dp"
         android:layout_gravity="bottom"
-        app:cbn_background="#10253C"
+        app:cbn_background="#FF082B2E"
         app:cbn_curve_radius="26dp"
         app:cbn_fabColor="#10253C"
         app:cbn_height="76dp"

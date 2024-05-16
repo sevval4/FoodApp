@@ -5,12 +5,63 @@
     android:layout_height="match_parent"
     tools:context=".BesinFragment">
 
+    <EditText
+        android:id="@+id/txt_arama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:hint="Arama"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:clipToPadding="false"
+        android:padding="8dp"
         android:scrollbars="vertical" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_weight="4"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Kahvaltı"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/selected_text"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_bold"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:buttonTint="@color/white" />
+    </LinearLayout>
 
 </FrameLayout>

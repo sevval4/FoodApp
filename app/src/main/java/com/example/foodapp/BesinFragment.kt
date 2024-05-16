@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TableLayout
 import android.widget.TableRow
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodapp.model.Besin
@@ -33,6 +35,23 @@ class BesinFragment : Fragment() {
             adapter.setData(besinList as List<Besin>)
         }
         return view
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        adapter.setOnItemSelectedListener(object : BesinAdapter.OnItemSelectedListener {
+            override fun onItemSelectedCountChanged(count: Int) {
+                view.findViewById<TextView>(R.id.selected_text)?.text = count.toString()
+            }
+        })
+        view.findViewById<CheckBox>(R.id.checkBox2)?.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val selectedItems = adapter.getSelectedItems()
+                for (item in selectedItems) {
+                    Log.d("BesinFragment", "Selected itemler: ${item.besinAdi}")
+                }
+            }
+        }
     }
 
 

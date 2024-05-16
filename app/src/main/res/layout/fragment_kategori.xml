@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container"
+
     tools:context=".KategoriFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,8 +53,9 @@
                     android:id="@+id/txt_sut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Süt"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -76,8 +77,9 @@
                     android:id="@+id/txt_ekmek"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Ekmek"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -99,8 +101,9 @@
                     android:id="@+id/txt_yag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Yağ"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -122,8 +125,9 @@
                     android:id="@+id/txt_et"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Et"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -145,8 +149,9 @@
                     android:id="@+id/txt_baklagil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Baklagil"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -168,8 +173,9 @@
                     android:id="@+id/txt_meyve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Meyve"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -191,8 +197,9 @@
                     android:id="@+id/txt_fastfood"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Fastfood"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
 
