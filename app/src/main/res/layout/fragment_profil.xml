@@ -15,18 +15,21 @@
             android:id="@+id/linearLayout7"
             android:layout_width="150dp"
             android:layout_height="200dp"
-            android:layout_marginTop="70dp"
             android:layout_marginEnd="1dp"
+            android:background="#494C4C"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            tools:layout_editor_absoluteY="130dp">
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Boy" />
+                android:fontFamily="@font/poppins_bold"
+                android:text="Boy"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextNumber"
@@ -39,7 +42,10 @@
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kilo" />
+                android:fontFamily="@font/poppins_bold"
+                android:text="Kilo"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextNumber2"
@@ -54,17 +60,20 @@
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="70dp"
+            android:background="#B00D191B"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linearLayout7"
-            app:layout_constraintTop_toTopOf="parent">
+            tools:layout_editor_absoluteY="130dp">
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hedeflenen Kilo" />
+                android:fontFamily="@font/poppins_bold"
+                android:text="Hedeflenen Kilo"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextNumber3"
@@ -165,6 +174,49 @@
                 android:layout_height="50dp"
                 android:src="@drawable/_394707_diet_healthy_organic_vegan_icon" />
         </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="391dp"
+            android:layout_height="128dp"
+            android:background="#121423"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/_703062_user_account_profile_icon"
+                android:tint="@color/white"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="sevval.celikk4@gmail.com"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView15"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Şevval Çelik"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView15"
+                tools:layout_editor_absoluteY="57dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

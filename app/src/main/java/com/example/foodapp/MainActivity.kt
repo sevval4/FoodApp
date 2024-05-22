@@ -21,14 +21,26 @@ import androidx.fragment.app.replace
 
 import androidx.navigation.NavController
 import com.example.foodapp.databinding.ActivityMainBinding
+import com.example.foodapp.model.Besin
 import com.google.firebase.firestore.FirebaseFirestore
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() ,BesinFragment.SelectedItemsListener{
     //val db = FirebaseFirestore.getInstance()
 
     private lateinit var binding: ActivityMainBinding
+
+    private var selectedItems: List<Besin> = emptyList()
+
+    override fun onSelectedItemsList(selectedItems: List<Besin>) {
+        this.selectedItems = selectedItems
+    }
+
+    fun getSelectedItems(): List<Besin> {
+        return selectedItems
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            show(1) // İlk başta hangi öğenin seçili olacağını belirtiyoruz
+            show(1)
         }
 
         supportFragmentManager.addOnBackStackChangedListener {
@@ -93,6 +105,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+
 
 
 

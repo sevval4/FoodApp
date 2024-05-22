@@ -1,6 +1,7 @@
 package com.example.foodapp
 
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 
@@ -36,9 +37,7 @@ class MainFragment : Fragment() {
     private lateinit var imgProfil:ImageView
     private lateinit var btnSu:ImageView
 
-
-
-
+    private lateinit var customAdapter: CustomAdapter
     private val subjects = LinkedHashMap<String, GroupInfo>()
     private val deptList = ArrayList<GroupInfo>()
 
@@ -50,37 +49,27 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
+        customAdapter = CustomAdapter(requireContext(), deptList)
 
-        // add data for displaying in expandable list view
-        loadData()
-
-        //get reference of the ExpandableListView
         simpleExpandableListView = view.findViewById(R.id.simpleExpandableListView) as ExpandableListView
+        val selectedItems = (activity as MainActivity).getSelectedItems()
+        loadData(selectedItems)
 
-        // create the adapter by passing your ArrayList data
         listAdapter = CustomAdapter(requireContext(), deptList)
-        // attach the adapter to the expandable list view
+
         simpleExpandableListView.setAdapter(listAdapter)
 
-        //expand all the Groups
         expandAll()
 
-        // setOnChildClickListener listener for child row click
         simpleExpandableListView.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-            //get the group header
             val headerInfo = deptList[groupPosition]
-            //get the child info
             val detailInfo = headerInfo.list[childPosition]
-            //display it or do something with it
             Toast.makeText(requireContext(), " Clicked on :: " + headerInfo.name
                     + "/" + detailInfo.name, Toast.LENGTH_LONG).show()
             false
         }
-        // setOnGroupClickListener listener for group heading click
         simpleExpandableListView.setOnGroupClickListener { parent, v, groupPosition, id ->
-            //get the group header
             val headerInfo = deptList[groupPosition]
-            //display it or do something with it
             Toast.makeText(requireContext(), " Header is :: " + headerInfo.name,
                 Toast.LENGTH_LONG).show()
             false
@@ -88,16 +77,6 @@ class MainFragment : Fragment() {
 
         return view
     }
-
-
-
-
-
-
-
-
-
-
 
     private fun parseVeri(veri: String?): List<Besin> {
         val besinList = mutableListOf<Besin>()
@@ -110,7 +89,6 @@ class MainFragment : Fragment() {
                 val besinAdi = match.groupValues[1]
                 val kalori = match.groupValues[2].toLong()
                 val olcu = match.groupValues[3]
-                // 'gönderilecek veri' kısmını kaldır
                 val trimmedBesinAdi = besinAdi.replace("gönderilecek veri", "").trim()
                 besinList.add(Besin(trimmedBesinAdi, kalori, olcu, 0))
             }
@@ -126,34 +104,72 @@ class MainFragment : Fragment() {
             simpleExpandableListView.expandGroup(i)
         }
     }
+    private fun loadData(selectedItems: List<Besin>) {
+        // clickedCategory değerini SharedPreferences'tan al
+        val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val clickedCategory = sharedPreferences.getString("clickedCategory", "default_value")
 
-    //load some initial data into out list
-    private fun loadData() {
-        addProduct("Kahvaltı", "Ürün 1")
-        addProduct("Kahvaltı", "Ürün 2")
-        addProduct("Kahvaltı", "Ürün 3")
+        Log.d("loadData", "kategori: $clickedCategory")
 
-        addProduct("Öğle Yemeği", "Ürün 1")
-        addProduct("Öğle Yemeği", "Ürün 2")
+        val kahvaltiList = SharedPreferencesUtil.getBesinList(requireContext(), "Kahvalti")?.toMutableList() ?: mutableListOf()
+        val ogleYemegiList = SharedPreferencesUtil.getBesinList(requireContext(), "OgleYemegi")?.toMutableList() ?: mutableListOf()
+        val aksamYemegiList = SharedPreferencesUtil.getBesinList(requireContext(), "AksamYemegi")?.toMutableList() ?: mutableListOf()
+        val araOgunEkleList = SharedPreferencesUtil.getBesinList(requireContext(), "AraOgunEkle")?.toMutableList() ?: mutableListOf()
+        val suEkleList = SharedPreferencesUtil.getBesinList(requireContext(), "SuEkle")?.toMutableList() ?: mutableListOf()
+        val egzersizEkleList = SharedPreferencesUtil.getBesinList(requireContext(), "EgzersizEkle")?.toMutableList() ?: mutableListOf()
+        val digerList = SharedPreferencesUtil.getBesinList(requireContext(), "Diger")?.toMutableList() ?: mutableListOf()
 
-        addProduct("Akşam Yemeği", "Ürün 1")
-        addProduct("Akşam Yemeği", "Ürün 2")
+        selectedItems.forEach { item ->
+            when (clickedCategory) {
+                "Kahvaltı" -> {
+                    kahvaltiList.add(item)
+                    Log.d("loadData", "Kahvaltı Ekle : $item")
+                }
+                "Öğle Yemeği" -> {
+                    ogleYemegiList.add(item)
+                }
+                "Akşam Yemeği" -> {
+                    aksamYemegiList.add(item)
+                }
+                "Ara Öğün Ekle" -> {
+                    araOgunEkleList.add(item)
+                    Log.d("loadData", "Ara Öğün Ekle : $item")
+                }
+                "Su Ekle" -> {
+                    suEkleList.add(item)
+                }
+                "Egzersiz Ekle" -> {
+                    egzersizEkleList.add(item)
+                }
+                else -> {
+                    digerList.add(item)
+                }
+            }
+        }
 
-        addProduct("Ara Öğün Ekle", "Yeni Ürün")
+        // Listeleri SharedPreferences içinde sakla
+        SharedPreferencesUtil.saveBesinList(requireContext(), "Kahvalti", kahvaltiList)
+        SharedPreferencesUtil.saveBesinList(requireContext(), "OgleYemegi", ogleYemegiList)
+        SharedPreferencesUtil.saveBesinList(requireContext(), "AksamYemegi", aksamYemegiList)
+        SharedPreferencesUtil.saveBesinList(requireContext(), "AraOgunEkle", araOgunEkleList)
+        SharedPreferencesUtil.saveBesinList(requireContext(), "SuEkle", suEkleList)
+        SharedPreferencesUtil.saveBesinList(requireContext(), "EgzersizEkle", egzersizEkleList)
+        SharedPreferencesUtil.saveBesinList(requireContext(), "Diger", digerList)
 
-        addProduct("Su Ekle", "Su")
-
-        addProduct("Egzersiz Ekle", "Yürüyüş")
+        // Ürünleri ekleyin
+        addProduct("Kahvaltı", kahvaltiList)
+        addProduct("Öğle Yemeği", ogleYemegiList)
+        addProduct("Akşam Yemeği", aksamYemegiList)
+        addProduct("Ara Öğün Ekle", araOgunEkleList)
+        addProduct("Su Ekle", suEkleList)
+        addProduct("Egzersiz Ekle", egzersizEkleList)
+        addProduct("Diğer", digerList)
     }
 
 
-    //here we maintain our products in various departments
-    private fun addProduct(department: String, product: String): Int {
+    private fun addProduct(department: String, selectedItems: List<Besin>): Int {
         var groupPosition = 0
-
-        //check the hash map if the group already exists
         var headerInfo = subjects[department]
-        //add the group if doesn't exists
         if (headerInfo == null) {
             headerInfo = GroupInfo()
             headerInfo.name = department
@@ -161,21 +177,20 @@ class MainFragment : Fragment() {
             deptList.add(headerInfo)
         }
 
-        //get the children for the group
         val productList = headerInfo.list
-        //size of the children list
         var listSize = productList.size
-        //add to the counter
-        listSize++
 
-        //create a new child and add that to the group
-        val detailInfo = ChildInfo()
-        detailInfo.sequence = listSize.toString()
-        detailInfo.name = product
-        productList.add(detailInfo)
+        selectedItems.forEach { item ->
+            listSize++
+
+            val detailInfo = ChildInfo()
+            detailInfo.sequence = listSize.toString()
+            detailInfo.name = item.besinAdi
+            productList.add(detailInfo)
+        }
+
         headerInfo.list = productList
 
-        //find the group position inside the list
         groupPosition = deptList.indexOf(headerInfo)
         return groupPosition
     }

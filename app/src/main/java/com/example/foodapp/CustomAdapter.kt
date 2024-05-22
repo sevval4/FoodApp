@@ -2,6 +2,7 @@ package com.example.foodapp
 
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,11 @@ import example.abhiandroid.expandablelistviewexample.GroupInfo
 
 class CustomAdapter(private val context: Context, private val deptList: ArrayList<GroupInfo>) :
     BaseExpandableListAdapter() {
+    private var clickedCategory: String = ""
+    fun getClickedCategory(): String {
+        return clickedCategory
+    }
+
 
     override fun getChild(groupPosition: Int, childPosition: Int): Any {
         val productList = deptList[groupPosition].list
@@ -23,6 +29,7 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
     override fun getChildId(groupPosition: Int, childPosition: Int): Long {
         return childPosition.toLong()
     }
+
 
     override fun getChildView(
         groupPosition: Int,
@@ -79,17 +86,26 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
         val heading = convertView!!.findViewById<TextView>(R.id.heading)
         val button = convertView.findViewById<ImageView>(R.id.btn_add)
         heading.text = headerInfo.name.trim()
-
         button.setOnClickListener {
-            val fragment=KategoriFragment()
-            val transaction=(context as AppCompatActivity).supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragmentContainer,fragment)
+            clickedCategory = headerInfo.name.trim()
+            Log.d("CustomAdapter", "TIKLANAN KATEGORİ: $clickedCategory")
+
+            // Save clickedCategory to SharedPreferences
+            val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("clickedCategory", clickedCategory)
+            editor.apply()
+
+            val fragment = KategoriFragment()
+            val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentContainer, fragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
 
         return convertView
     }
+
 
     override fun hasStableIds(): Boolean {
         return true

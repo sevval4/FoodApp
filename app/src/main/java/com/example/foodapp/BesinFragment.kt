@@ -1,6 +1,7 @@
 package com.example.foodapp
 
 import BesinAdapter
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -21,6 +22,16 @@ import com.google.firebase.firestore.FirebaseFirestore
 class BesinFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: BesinAdapter
+    private lateinit var selectedItemsListener: SelectedItemsListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is SelectedItemsListener) {
+            selectedItemsListener = context
+        } else {
+            throw RuntimeException("$context  SelectedItemsListener")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +47,7 @@ class BesinFragment : Fragment() {
         }
         return view
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -44,15 +56,19 @@ class BesinFragment : Fragment() {
                 view.findViewById<TextView>(R.id.selected_text)?.text = count.toString()
             }
         })
-        view.findViewById<CheckBox>(R.id.checkBox2)?.setOnCheckedChangeListener { _, isChecked ->
+        view.findViewById<CheckBox>(R.id.checkBox2)?.setOnCheckedChangeListener { button, isChecked ->
             if (isChecked) {
                 val selectedItems = adapter.getSelectedItems()
-                for (item in selectedItems) {
-                    Log.d("BesinFragment", "Selected itemler: ${item.besinAdi}")
-                }
+                selectedItemsListener.onSelectedItemsList(selectedItems)
             }
         }
     }
+
+    interface SelectedItemsListener {
+        fun onSelectedItemsList(selectedItems: List<Besin>)
+    }
+
+
 
 
 }
