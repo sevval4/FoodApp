@@ -5,7 +5,7 @@
     android:id="@+id/fragment_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/gradient_background"
     android:orientation="vertical"
     tools:context=".MainFragment">
 
@@ -13,7 +13,6 @@
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-
         android:background="@drawable/shadow"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -36,21 +35,47 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:fontFamily="@font/poppins_bold"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/alfa_slab_one"
             android:text="GÜNLÜK TÜKETİM MİKTARI"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
     </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="153dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="167dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/datePickerEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#5593B8"
+            android:focusable="false"
+            android:hint="Select Date"
+            android:inputType="none"
+            android:text="2024-02-21"
+            android:textAlignment="viewStart" />
+
+
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
-        app:cardBackgroundColor="#F52C2F30"
-        app:cardCornerRadius="12dp">
+        app:cardBackgroundColor="#1C1C1E"
+        app:cardCornerRadius="12dp" >
 
         <TextView
             android:id="@+id/textView14"
@@ -58,9 +83,33 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|top"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway_semibold"
             android:text="Kalan Kalori"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="2000 kcal"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        app:cardBackgroundColor="#1C1C1E"
+        app:cardCornerRadius="12dp">
 
         <TextView
             android:id="@+id/textView23"
@@ -68,36 +117,30 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/raleway_semibold"
             android:text="Alınan Kalori"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|end"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="2000"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/txt_calorie_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/alfa_slab_one"
             android:text="200"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
     </androidx.cardview.widget.CardView>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <ExpandableListView
@@ -105,8 +148,8 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:childDivider="#4A4B50"
-            android:divider="#88A1A1"
-            android:dividerHeight="1dp" />
+            android:divider="#69696F"
+            android:dividerHeight="2dp" />
 
     </RelativeLayout>
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,20 +7,41 @@
     <TextView
         android:id="@+id/sequence"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:fontFamily="@font/raleway_semibold"
         android:paddingLeft="35sp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#F6F2F2" />
+        android:textColor="#F6F2F2"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/childItem"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/sequence"
+        android:layout_toLeftOf="@id/kalori"
+        android:fontFamily="@font/raleway_semibold"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#F6F2F2" />
+        android:textColor="#F6F2F2"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/kalori"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/raleway_semibold"
+        android:padding="5dp"
+        android:textAlignment="textEnd"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/text_color"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 </RelativeLayout>

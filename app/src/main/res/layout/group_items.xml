@@ -13,10 +13,12 @@
             android:id="@+id/heading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
+            android:layout_gravity="center|start"
             android:layout_weight="1"
-            android:textColor="@color/white"
-            android:textSize="18sp"
+            android:fontFamily="@font/raleway_semibold"
+            android:textAlignment="textStart"
+            android:textColor="#FEFEFE"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -26,7 +28,7 @@
             android:layout_gravity="end"
             android:layout_marginEnd="15dp"
             android:layout_weight="1"
-            android:tint="@color/white"
+            android:tint="#4C81A0"
             app:srcCompat="@drawable/_16371_plus_icon" />
     </LinearLayout>
 

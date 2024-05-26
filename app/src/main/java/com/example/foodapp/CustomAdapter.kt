@@ -49,6 +49,8 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
         sequence.text = detailInfo.sequence.trim() + ". "
         val childItem = convertView.findViewById<TextView>(R.id.childItem)
         childItem.text = detailInfo.name.trim()
+        val kalori = convertView.findViewById<TextView>(R.id.kalori)
+        kalori.text = "${detailInfo.kalori} kcal"
 
         return convertView
     }
@@ -90,7 +92,6 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
             clickedCategory = headerInfo.name.trim()
             Log.d("CustomAdapter", "TIKLANAN KATEGORİ: $clickedCategory")
 
-            // Save clickedCategory to SharedPreferences
             val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putString("clickedCategory", clickedCategory)
@@ -102,6 +103,28 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
             transaction.addToBackStack(null)
             transaction.commit()
         }
+
+        if (headerInfo.name == "Su Ekle") {
+            convertView.setOnClickListener {
+                // SuFragment'a geçiş kodu
+                val suFragment = SuFragment()
+                val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragmentContainer, suFragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
+        }
+        if (headerInfo.name == "Egzersiz Ekle") {
+            convertView.setOnClickListener {
+                // SuFragment'a geçiş kodu
+                val egzersizFragment = EgzersizFragment()
+                val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragmentContainer, egzersizFragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
+        }
+
 
         return convertView
     }

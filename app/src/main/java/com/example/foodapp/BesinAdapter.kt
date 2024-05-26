@@ -21,7 +21,6 @@ class BesinAdapter(private val context: Context) :
     private var besinList: List<Besin> = emptyList()
     private var selectedCount: Int = 0
 
-
     fun setData(newData: List<Besin>) {
         besinList = newData
         notifyDataSetChanged()
@@ -35,11 +34,11 @@ class BesinAdapter(private val context: Context) :
         onItemSelectedListener = listener
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BesinViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_besin, parent, false)
         return BesinViewHolder(itemView)
     }
+
     override fun onBindViewHolder(holder: BesinViewHolder, position: Int) {
         val currentItem = besinList[position]
         holder.bind(currentItem)

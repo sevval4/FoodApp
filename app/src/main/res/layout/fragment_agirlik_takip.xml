@@ -25,7 +25,8 @@
             android:hint="Ağırlık"
             android:inputType="number"
             android:paddingTop="60dp"
-            android:textColorHint="#0E0E0E" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/editTextNumber5"
@@ -35,7 +36,8 @@
             android:hint="Yağ"
             android:inputType="number"
             android:paddingTop="60dp"
-            android:textColorHint="#0E0E0E" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/editTextNumber6"
@@ -45,7 +47,8 @@
             android:hint="Kas"
             android:inputType="number"
             android:paddingTop="60dp"
-            android:textColorHint="#0E0E0E" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/editTextNumber7"
@@ -55,7 +58,8 @@
             android:hint="BKI"
             android:inputType="number"
             android:paddingTop="60dp"
-            android:textColorHint="#0E0E0E" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <Button
             android:id="@+id/button"

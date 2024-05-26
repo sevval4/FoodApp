@@ -22,23 +22,39 @@ import androidx.fragment.app.replace
 import androidx.navigation.NavController
 import com.example.foodapp.databinding.ActivityMainBinding
 import com.example.foodapp.model.Besin
+import com.example.foodapp.model.Egzersiz
 import com.google.firebase.firestore.FirebaseFirestore
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 
 
-class MainActivity : AppCompatActivity() ,BesinFragment.SelectedItemsListener{
+class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener, EgzersizFragment.SelectedEgzersizListener {
     //val db = FirebaseFirestore.getInstance()
 
     private lateinit var binding: ActivityMainBinding
-
+    val fragment = EgzersizFragment()
     private var selectedItems: List<Besin> = emptyList()
+
+    private var selectedEgzersiz: List<Egzersiz> = emptyList()
+
 
     override fun onSelectedItemsList(selectedItems: List<Besin>) {
         this.selectedItems = selectedItems
     }
 
+    override fun onSelectedEgzersizList(selectedEgzersiz: List<Egzersiz>) {
+        this.selectedEgzersiz = selectedEgzersiz
+    }
+//    override fun onSelectedEgzersizList(selectedEgzersiz: List<Egzersiz>) {
+//        this.selectedEgzersiz = selectedEgzersiz
+//    }
+
+
     fun getSelectedItems(): List<Besin> {
         return selectedItems
+    }
+
+    fun getSelectedEgzersiz():List<Egzersiz>{
+        return selectedEgzersiz
     }
 
 
@@ -60,19 +76,7 @@ class MainActivity : AppCompatActivity() ,BesinFragment.SelectedItemsListener{
             .replace(R.id.fragmentContainer, fragment)
             .commit()
 
-        binding.datePickerEditText.setOnClickListener {
-            val datePickerDialog = DatePickerDialog(
-                this, { _, year, monthOfYear, dayOfMonth ->
-                    val selectedDate = "$year-${monthOfYear + 1}-$dayOfMonth"
-                    binding.datePickerEditText.setText(selectedDate)
-                }, 2024, 1, 21
-            )
-            datePickerDialog.show()
-        }
-        fun replaceFragment(fragment: Fragment) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment)
-                .commit()
-        }
+
 
         binding.bottomNavigation.apply {
             add(CurvedBottomNavigation.Model(1, "Main", R.drawable._290849_document_done_excellent_list_note_icon))
@@ -90,7 +94,6 @@ class MainActivity : AppCompatActivity() ,BesinFragment.SelectedItemsListener{
                     5 -> replaceFragment(KategoriFragment())
                 }
             }
-
             show(1)
         }
 
@@ -103,13 +106,14 @@ class MainActivity : AppCompatActivity() ,BesinFragment.SelectedItemsListener{
             } else if (currentFragment is SuFragment) {
                 binding.bottomNavigation.show(3)
             }
-
         }
-
-
-
-
-
     }
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment)
+            .commit()
+    }
+
+
+
 
 }

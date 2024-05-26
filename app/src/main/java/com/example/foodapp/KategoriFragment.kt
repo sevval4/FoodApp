@@ -81,6 +81,4 @@ class KategoriFragment : Fragment() {
             ?.addToBackStack(null)
             ?.commit()
     }
-
-
 }

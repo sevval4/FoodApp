@@ -1,24 +1,22 @@
 package com.example.foodapp
 
+import HabitFragment
+import OyunFragment
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import com.example.foodapp.databinding.FragmentProfilBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfilFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfilFragment : Fragment() {
     lateinit var oyun: CardView
+    lateinit var album:CardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,9 +24,18 @@ class ProfilFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profil, container, false)
         oyun = view.findViewById(R.id.oyun)
+        album=view.findViewById(R.id.album)
 
         oyun.setOnClickListener {
+            Log.d("ProfilFragment", "oyun CardView clicked")
             val fragment = OyunFragment()
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentContainer, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+        album.setOnClickListener {
+            val fragment = HabitFragment()
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentContainer, fragment)
             transaction.addToBackStack(null)
@@ -48,5 +55,4 @@ class ProfilFragment : Fragment() {
                 }
             }
     }
-
 }

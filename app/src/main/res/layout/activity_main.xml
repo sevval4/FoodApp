@@ -28,47 +28,20 @@
         android:layout_gravity="bottom"
         app:cbn_background="#16192C"
         app:cbn_curve_radius="26dp"
-        app:cbn_fabColor="#0F0F10"
+        app:cbn_fabColor="#D32A315C"
         app:cbn_height="76dp"
-
         app:cbn_iconColor="@color/white"
         app:cbn_icon_size="24dp"
         app:cbn_selectedIconColor="@color/white"
         app:cbn_selected_icon_size="65dp"
-        app:cbn_titleColor="@color/white"
+        app:cbn_titleColor="@color/text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-
     </com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation>
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="98dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="153dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="167dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <EditText
-            android:id="@+id/datePickerEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="34dp"
-            android:background="#C59292"
-            android:focusable="false"
-            android:hint="Select Date"
-            android:inputType="none"
-            android:text="2024-02-21"
-            android:textAlignment="viewStart" />
-
-
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

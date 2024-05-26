@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -32,7 +33,7 @@ class BedenTakipFragment : Fragment() {
     private lateinit var guncelKalcaEditText: EditText
     private lateinit var guncelUstBacakEditText: EditText
     private lateinit var guncelBaldırEditText: EditText
-    private lateinit var kaydetButton: Button
+    private lateinit var kaydetButton: ImageView
     private lateinit var tableLayoutBedenTakip: TableLayout
 
     override fun onCreateView(
@@ -40,7 +41,6 @@ class BedenTakipFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_beden_takip, container, false)
-
         guncelTarihEditText = rootView.findViewById(R.id.editTextGuncelTarih)
         guncelKolEditText = rootView.findViewById(R.id.editTextGuncelKol)
         guncelGogusEditText = rootView.findViewById(R.id.editTextGuncelGogus)
@@ -54,7 +54,6 @@ class BedenTakipFragment : Fragment() {
         kaydetButton.setOnClickListener {
             ekleBedenTakip()
         }
-
         return rootView
     }
 
@@ -73,14 +72,14 @@ class BedenTakipFragment : Fragment() {
             TableRow.LayoutParams.WRAP_CONTENT
         )
         row.layoutParams = params
-        // Tarih
+
         val tarihTextView = TextView(requireContext())
         tarihTextView.text = tarih
         tarihTextView.gravity = Gravity.CENTER
         tarihTextView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
         row.addView(tarihTextView)
 
-        // Kol
+
         val kolTextView = TextView(requireContext())
         kolTextView.text = guncelKol
         kolTextView.gravity = Gravity.CENTER
