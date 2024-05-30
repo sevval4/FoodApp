@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OyunFragment">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:text="Hangisi Kaç Kalori?"
-        android:textSize="30sp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/shadow"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="HANGİSİ KAÇ KALORİ?"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/_d_fluency_cherry_cheesecake" />
+                android:src="@drawable/_d_fluency_toast" />
         </LinearLayout>
 
         <!-- Üçüncü ikili -->
@@ -87,9 +102,9 @@
                 android:id="@+id/imageView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginBottom="80dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/_d_fluency_salad" />
+                android:src="@drawable/fast_food" />
         </LinearLayout>
     </LinearLayout>
 

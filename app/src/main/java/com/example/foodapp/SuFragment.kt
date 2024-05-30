@@ -9,60 +9,53 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.foodapp.databinding.ActivityMainBinding
-import com.example.foodapp.databinding.FragmentSu2Binding
+import com.example.foodapp.databinding.FragmentSuBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
 class SuFragment : Fragment() {
-    private lateinit var binding: FragmentSu2Binding
+    private lateinit var binding: FragmentSuBinding
 
     private val emptyGlass = R.drawable.empty_glass
     private val filledGlass = R.drawable.bardak_fill
-    private val glassCapacity = 200 // Bardak kapasitesi (ml)
-    private val bardaklar = mutableListOf<ImageView>() // Bardakların listesi
-    private val suMiktarlari = mutableListOf<Int>() // Bardaklardaki su miktarlarının listesi (ml cinsinden)
+    private val glassCapacity = 200
+    private val bardaklar = mutableListOf<ImageView>()
+    private val suMiktarlari = mutableListOf<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSu2Binding.inflate(inflater, container, false)
+        binding = FragmentSuBinding.inflate(inflater, container, false)
 
-        initializeBardaklar() // Bardakları ve su miktarlarını başlat
+        initializeBardaklar()
 
 
         return binding.root
     }
 
-    // Bardakları ve su miktarlarını başlatan yardımcı fonksiyon
+
     private fun initializeBardaklar() {
         bardaklar.addAll(
             listOf(
-                binding.imageView, binding.imageView2, binding.imageView3, binding.imageView7,
+
                 binding.imageView10, binding.imageView11, binding.imageView13, binding.imageView17,
                 binding.imageView20, binding.imageView21, binding.imageView23, binding.imageView27,
-                binding.imageView30, binding.imageView31, binding.imageView33, binding.imageView37
+                binding.imageView30, binding.imageView31,
             )
         )
 
-        // Her bardak için başlangıçta su miktarını sıfıra ayarla
         for (i in 1..bardaklar.size) {
             suMiktarlari.add(0)
         }
 
-        // Her bardak için tıklama işlemi tanımla
         bardaklar.forEachIndexed { index, bardak ->
             bardak.setOnClickListener {
-                toggleGlass(index) // Bardağın durumunu değiştir
+                toggleGlass(index)
             }
         }
     }
 
-    // Bardak durumunu değiştiren fonksiyon
     private fun toggleGlass(index: Int) {
         val bardak = bardaklar[index]
         val currentSuMiktari = suMiktarlari[index]
@@ -75,7 +68,7 @@ class SuFragment : Fragment() {
             suMiktarlari[index] = 0
         }
 
-        updateSuMiktari() // Toplam su miktarını güncelle
+        updateSuMiktari()
     }
     private fun calculateTotalSuMiktari(): Int {
         var totalSuMiktari = 0
@@ -84,7 +77,6 @@ class SuFragment : Fragment() {
         }
         return totalSuMiktari
     }
-    // Toplam su miktarını güncelleyen fonksiyon
     private fun updateSuMiktari() {
         val toplamSuMiktari = calculateTotalSuMiktari()
         binding.txtSu.text = "Tüketilen: ${toplamSuMiktari} ml"

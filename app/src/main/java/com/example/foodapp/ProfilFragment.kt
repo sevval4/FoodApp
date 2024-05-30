@@ -1,7 +1,7 @@
 package com.example.foodapp
 
-import HabitFragment
-import OyunFragment
+
+import TrainingFragment
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,34 +15,41 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class ProfilFragment : Fragment() {
-    lateinit var oyun: CardView
-    lateinit var album:CardView
-
+    private lateinit var binding: FragmentProfilBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profil, container, false)
-        oyun = view.findViewById(R.id.oyun)
-        album=view.findViewById(R.id.album)
+        binding = FragmentProfilBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        oyun.setOnClickListener {
-            Log.d("ProfilFragment", "oyun CardView clicked")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.oyun.setOnClickListener {
             val fragment = OyunFragment()
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentContainer, fragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
-        album.setOnClickListener {
-            val fragment = HabitFragment()
+
+        binding.album.setOnClickListener {
+            val fragment = TrainingFragment()
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentContainer, fragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
 
-        return view
+        binding.rapor.setOnClickListener {
+            val fragment = RecordFragment()
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentContainer, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 
     companion object {
@@ -55,4 +62,6 @@ class ProfilFragment : Fragment() {
                 }
             }
     }
+
+
 }

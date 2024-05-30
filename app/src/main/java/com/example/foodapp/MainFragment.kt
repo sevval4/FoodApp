@@ -53,7 +53,8 @@ class MainFragment : Fragment() {
                 ?.commit()
         }
 
-        simpleExpandableListView = view.findViewById(R.id.simpleExpandableListView) as ExpandableListView
+        simpleExpandableListView =
+            view.findViewById(R.id.simpleExpandableListView) as ExpandableListView
         val selectedItems = (activity as MainActivity).getSelectedItems()
         loadData(selectedItems)
         listAdapter = CustomAdapter(requireContext(), deptList)
@@ -62,26 +63,29 @@ class MainFragment : Fragment() {
         simpleExpandableListView.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
             val headerInfo = deptList[groupPosition]
             val detailInfo = headerInfo.list[childPosition]
-            Toast.makeText(requireContext(), "Clicked on :: ${headerInfo.name}/${detailInfo.name}", Toast.LENGTH_LONG).show()
             false
         }
         simpleExpandableListView.setOnGroupClickListener { _, _, groupPosition, _ ->
             val headerInfo = deptList[groupPosition]
-            Toast.makeText(requireContext(), "Header is :: ${headerInfo.name}", Toast.LENGTH_LONG).show()
             false
         }
         val totalCalories = getTotalCalories()
         binding.txtCalorieIn.text = "$totalCalories kcal"
+
+        binding.datePickerEditText.setOnClickListener {
+            showDatePickerDialog()
+        }
 
         Log.d("TotalCalories", "Total Calories: $totalCalories")
 
         return view
     }
 
-
     private fun handleDateSelection(selectedDate: String, selectedItems: List<Besin>) {
         val db = FirebaseFirestore.getInstance()
         val dailyRecordRef = db.collection("DailyRecord")
+        val startDate = selectedDate
+        val endDate = selectedDate
 
         selectedItems.forEach { food ->
             val record = hashMapOf(
@@ -94,16 +98,62 @@ class MainFragment : Fragment() {
             dailyRecordRef.add(record)
                 .addOnSuccessListener { documentReference ->
                     Log.d("Firestore", "Record added with ID: ${documentReference.id}")
+                    fetchDailyRecords(startDate,endDate)
                 }
                 .addOnFailureListener { e ->
                     Log.w("Firestore", "Error adding record", e)
                 }
         }
 
-        Log.d("Firestore", "handleDateSelection function executed with selectedDate: $selectedDate and ${selectedItems.size} items.")
+        Log.d(
+            "Firestore",
+            "handleDateSelection function executed with selectedDate: $selectedDate and ${selectedItems.size} items."
+        )
     }
+
+    fun fetchDailyRecords(startDate: String, endDate: String) {
+        val db = FirebaseFirestore.getInstance()
+        val dailyRecordRef = db.collection("DailyRecord")
+
+        dailyRecordRef.whereGreaterThanOrEqualTo("date", startDate)
+            .whereLessThanOrEqualTo("date", endDate)
+            .get()
+            .addOnSuccessListener { documents ->
+                val records = ArrayList<Besin>()
+
+                for (document in documents) {
+                    val besinAdi = document.getString("BesinAdi")
+                    val kalori = document.getLong("Kalori")
+                    val olcu = document.getString("Olcu")
+                    val kategoriID = document.getLong("KategoriID")
+
+                    val besin = Besin(besinAdi!!, kalori!!, olcu!!, kategoriID ?: 0)
+                    records.add(besin)
+
+                    Log.d(
+                        "DailyRecord",
+                        "Besin Adı: $besinAdi, Kalori: $kalori, Ölçü: $olcu"
+                    )
+//                    val fragment = RecordFragment.newInstance(records, startDate)
+//                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//                    transaction.replace(R.id.fragmentContainer, fragment)
+//                    transaction.addToBackStack(null)
+//                    transaction.commit()
+
+                }
+
+
+            }
+            .addOnFailureListener { e ->
+                Log.e("DailyRecord", "Error fetching records: $e")
+            }
+    }
+
+
+
     fun updateSuMiktariText() {
-        val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val toplamSuMiktari = sharedPreferences.getInt("toplamSuMiktari", 0)
         val toplamSuMiktariText = "Tüketilen: ${toplamSuMiktari} ml"
 
@@ -116,18 +166,20 @@ class MainFragment : Fragment() {
         }
 
         val productList = headerInfo.list
-        productList.clear() // Mevcut öğeleri temizle
+        productList.clear()
         val detailInfo = ChildInfo()
         detailInfo.sequence = "1"
         detailInfo.name = toplamSuMiktariText
-        detailInfo.kalori = "0" // Su için kalori sıfır
+        detailInfo.kalori = "0"
         productList.add(detailInfo)
 
         headerInfo.list = productList
 
     }
+
     private fun updateEgzersizText() {
-        val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val selectedEgzersizAdi = sharedPreferences.getString("selectedEgzersizAdi", "")
         val selectedYakilanKalori = sharedPreferences.getInt("selectedYakilanKalori", 0)
 
@@ -141,7 +193,6 @@ class MainFragment : Fragment() {
 
         val productList = headerInfo.list
 
-        // Seçilen egzersiz bilgisini ekleyerek göster
         val detailInfo = ChildInfo()
         detailInfo.sequence = (productList.size + 1).toString()
         detailInfo.name = selectedEgzersizAdi!!
@@ -150,7 +201,6 @@ class MainFragment : Fragment() {
 
         headerInfo.list = productList
 
-        // Log the exercises
         Log.d("Egzersiz", "Egzersiz: $selectedEgzersizAdi, Yakılan Kalori: $selectedYakilanKalori")
     }
 
@@ -180,17 +230,29 @@ class MainFragment : Fragment() {
     }
 
     fun loadData(selectedItems: List<Besin>) {
-        val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val clickedCategory = sharedPreferences.getString("clickedCategory", "default_value")
         Log.d("loadData", "kategori: $clickedCategory")
 
-        val kahvaltiList = SharedPreferencesUtil.getBesinList(requireContext(), "Kahvalti")?.toMutableList() ?: mutableListOf()
-        val ogleYemegiList = SharedPreferencesUtil.getBesinList(requireContext(), "OgleYemegi")?.toMutableList() ?: mutableListOf()
-        val aksamYemegiList = SharedPreferencesUtil.getBesinList(requireContext(), "AksamYemegi")?.toMutableList() ?: mutableListOf()
-        val araOgunEkleList = SharedPreferencesUtil.getBesinList(requireContext(), "AraOgunEkle")?.toMutableList() ?: mutableListOf()
-        val suEkleList = mutableListOf<Besin>() // SuEkle için Besin listesi yerine boş bir liste oluştur
+        val kahvaltiList =
+            SharedPreferencesUtil.getBesinList(requireContext(), "Kahvalti")?.toMutableList()
+                ?: mutableListOf()
+        val ogleYemegiList =
+            SharedPreferencesUtil.getBesinList(requireContext(), "OgleYemegi")?.toMutableList()
+                ?: mutableListOf()
+        val aksamYemegiList =
+            SharedPreferencesUtil.getBesinList(requireContext(), "AksamYemegi")?.toMutableList()
+                ?: mutableListOf()
+        val araOgunEkleList =
+            SharedPreferencesUtil.getBesinList(requireContext(), "AraOgunEkle")?.toMutableList()
+                ?: mutableListOf()
+        val suEkleList =
+            mutableListOf<Besin>()
         //val egzersizEkleList = SharedPreferencesUtil.getBesinList(requireContext(), "EgzersizEkle")?.toMutableList() ?: mutableListOf()
-        val digerList = SharedPreferencesUtil.getBesinList(requireContext(), "Diger")?.toMutableList() ?: mutableListOf()
+        val digerList =
+            SharedPreferencesUtil.getBesinList(requireContext(), "Diger")?.toMutableList()
+                ?: mutableListOf()
 
         selectedItems.forEach { item ->
             when (clickedCategory) {
@@ -198,22 +260,28 @@ class MainFragment : Fragment() {
                     kahvaltiList.add(item)
                     Log.d("loadData", "Kahvaltı Ekle : $item")
                 }
+
                 "Öğle Yemeği" -> {
                     ogleYemegiList.add(item)
                 }
+
                 "Akşam Yemeği" -> {
                     aksamYemegiList.add(item)
                 }
+
                 "Ara Öğün Ekle" -> {
                     araOgunEkleList.add(item)
                     Log.d("loadData", "Ara Öğün Ekle : $item")
                 }
+
                 "Su Ekle" -> {
-                    // suEkleList.add(item) // Su ekleme işlemi yapma
+                    // suEkleList.add(item)
                 }
+
                 "Egzersiz Ekle" -> {
-                   // egzersizEkleList.add(item)
+                    // egzersizEkleList.add(item)
                 }
+
                 else -> {
                     digerList.add(item)
                 }
@@ -224,7 +292,7 @@ class MainFragment : Fragment() {
         SharedPreferencesUtil.saveBesinList(requireContext(), "OgleYemegi", ogleYemegiList)
         SharedPreferencesUtil.saveBesinList(requireContext(), "AksamYemegi", aksamYemegiList)
         SharedPreferencesUtil.saveBesinList(requireContext(), "AraOgunEkle", araOgunEkleList)
-        // SharedPreferencesUtil.saveBesinList(requireContext(), "SuEkle", suEkleList) // Su ekleme işlemi yapma
+        // SharedPreferencesUtil.saveBesinList(requireContext(), "SuEkle", suEkleList)
         //SharedPreferencesUtil.saveBesinList(requireContext(), "EgzersizEkle", egzersizEkleList)
         SharedPreferencesUtil.saveBesinList(requireContext(), "Diger", digerList)
 
@@ -232,18 +300,16 @@ class MainFragment : Fragment() {
         addProduct("Öğle Yemeği", ogleYemegiList)
         addProduct("Akşam Yemeği", aksamYemegiList)
         addProduct("Ara Öğün Ekle", araOgunEkleList)
-        // addProduct("Su Ekle", suEkleList) // Su ekleme işlemi yapma
+        // addProduct("Su Ekle", suEkleList)
         //addProduct("Egzersiz Ekle", egzersizEkleList)
 
 
         val selectedDate = binding.datePickerEditText.text.toString()
         handleDateSelection(selectedDate, selectedItems)
 
-        updateSuMiktariText() // Su Ekle kategorisindeki su miktarını güncelle
+        updateSuMiktariText()
         updateEgzersizText()
     }
-
-
 
 
     private fun addProduct(department: String, selectedItems: List<Besin>): Int {
@@ -262,8 +328,9 @@ class MainFragment : Fragment() {
 
             val detailInfo = ChildInfo()
             detailInfo.sequence = listSize.toString()
-            detailInfo.name = item.besinAdi // Besin adını atıyoruz
-            detailInfo.kalori = if (department == "Su Ekle") "0" else item.kalori.toString() // Su için kalori sıfır
+            detailInfo.name = item.besinAdi
+            detailInfo.kalori =
+                if (department == "Su Ekle") "0" else item.kalori.toString()
             productList.add(detailInfo)
         }
 

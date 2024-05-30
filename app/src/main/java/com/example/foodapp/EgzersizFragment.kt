@@ -77,7 +77,6 @@ class EgzersizFragment : Fragment() {
                 selectedEgzersizItemsListener.onSelectedEgzersizList(selectedItems)
                 Log.d("EgzersizFragment", "CheckBox işaretlendi. Seçilen egzersizler: $selectedItems")
 
-                // Seçilen egzersizlerin adlarını ve yakılan kalorilerini güncelle
                 for (selectedEgzersiz in selectedItems) {
                     updateEgzersiz(selectedEgzersiz.egzersizAdi, selectedEgzersiz.yakilanKalori)
                 }
@@ -112,7 +111,6 @@ class EgzersizFragment : Fragment() {
         editor.putInt("selectedYakilanKalori", selectedYakilanKalori)
         editor.apply()
 
-        // MainFragment'i güncelle
         val mainFragment = requireActivity().supportFragmentManager.findFragmentByTag("MainFragment") as? MainFragment
         mainFragment?.updateSuMiktariText()
     }

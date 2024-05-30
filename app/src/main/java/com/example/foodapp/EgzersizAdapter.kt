@@ -66,7 +66,6 @@ class EgzersizAdapter(private val context: Context) :
         return selectedItems
     }
 
-
     inner class EgzersizViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val egzersizAdiTextView: TextView = itemView.findViewById(R.id.egzersizAdiTextView)
         private val setSayisiTextView: TextView = itemView.findViewById(R.id.setSayisiTextView)

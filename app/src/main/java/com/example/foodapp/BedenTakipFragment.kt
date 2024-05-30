@@ -12,59 +12,36 @@ import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import com.example.foodapp.databinding.FragmentBedenTakipBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BedenTakipFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BedenTakipFragment : Fragment() {
 
-    private lateinit var rootView: View
-    private lateinit var guncelTarihEditText: EditText
-    private lateinit var guncelKolEditText: EditText
-    private lateinit var guncelGogusEditText: EditText
-    private lateinit var guncelBelEditText: EditText
-    private lateinit var guncelKalcaEditText: EditText
-    private lateinit var guncelUstBacakEditText: EditText
-    private lateinit var guncelBaldırEditText: EditText
-    private lateinit var kaydetButton: ImageView
-    private lateinit var tableLayoutBedenTakip: TableLayout
+    private lateinit var binding: FragmentBedenTakipBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(R.layout.fragment_beden_takip, container, false)
-        guncelTarihEditText = rootView.findViewById(R.id.editTextGuncelTarih)
-        guncelKolEditText = rootView.findViewById(R.id.editTextGuncelKol)
-        guncelGogusEditText = rootView.findViewById(R.id.editTextGuncelGogus)
-        guncelBelEditText = rootView.findViewById(R.id.editTextGuncelBel)
-        guncelKalcaEditText = rootView.findViewById(R.id.editTextGuncelKalca)
-        guncelUstBacakEditText = rootView.findViewById(R.id.editTextGuncelUstBacak)
-        guncelBaldırEditText = rootView.findViewById(R.id.editTextGuncelBaldır)
-        kaydetButton = rootView.findViewById(R.id.buttonKaydet)
-        tableLayoutBedenTakip = rootView.findViewById(R.id.tableLayoutBedenTakip)
+        binding = FragmentBedenTakipBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        kaydetButton.setOnClickListener {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.buttonKaydet.setOnClickListener {
             ekleBedenTakip()
         }
-        return rootView
     }
 
     private fun ekleBedenTakip() {
-        val tarih = guncelTarihEditText.text.toString()
-        val guncelKol = guncelKolEditText.text.toString()
-        val guncelGogus = guncelGogusEditText.text.toString()
-        val guncelBel = guncelBelEditText.text.toString()
-        val guncelKalca = guncelKalcaEditText.text.toString()
-        val guncelUstBacak = guncelUstBacakEditText.text.toString()
-        val guncelBaldır = guncelBaldırEditText.text.toString()
+        val tarih = binding.editTextGuncelTarih.text.toString()
+        val guncelKol = binding.editTextGuncelKol.text.toString()
+        val guncelGogus = binding.editTextGuncelGogus.text.toString()
+        val guncelBel = binding.editTextGuncelBel.text.toString()
+        val guncelKalca = binding.editTextGuncelKalca.text.toString()
+        val guncelUstBacak = binding.editTextGuncelUstBacak.text.toString()
+        val guncelBaldır = binding.editTextGuncelBaldR.text.toString()
 
         val row = TableRow(requireContext())
         val params = TableRow.LayoutParams(
@@ -73,67 +50,63 @@ class BedenTakipFragment : Fragment() {
         )
         row.layoutParams = params
 
-        val tarihTextView = TextView(requireContext())
-        tarihTextView.text = tarih
-        tarihTextView.gravity = Gravity.CENTER
-        tarihTextView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        val tarihTextView = TextView(requireContext()).apply {
+            text = tarih
+            gravity = Gravity.CENTER
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        }
         row.addView(tarihTextView)
 
-
-        val kolTextView = TextView(requireContext())
-        kolTextView.text = guncelKol
-        kolTextView.gravity = Gravity.CENTER
-        kolTextView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        val kolTextView = TextView(requireContext()).apply {
+            text = guncelKol
+            gravity = Gravity.CENTER
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        }
         row.addView(kolTextView)
 
-        // Göğüs
-        val gogusTextView = TextView(requireContext())
-        gogusTextView.text = guncelGogus
-        gogusTextView.gravity = Gravity.CENTER
-        gogusTextView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        val gogusTextView = TextView(requireContext()).apply {
+            text = guncelGogus
+            gravity = Gravity.CENTER
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        }
         row.addView(gogusTextView)
 
-        // Kalça
-        val kalcaTextView = TextView(requireContext())
-        kalcaTextView.text = guncelKalca
-        kalcaTextView.gravity = Gravity.CENTER
-        kalcaTextView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
-        row.addView(kalcaTextView)
-
-        // Üst Bacak
-        val ustBacakTextView = TextView(requireContext())
-        ustBacakTextView.text = guncelUstBacak
-        ustBacakTextView.gravity = Gravity.CENTER
-        ustBacakTextView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
-        row.addView(ustBacakTextView)
-
-        // Baldır
-        val baldirTextView = TextView(requireContext())
-        baldirTextView.text = guncelBaldır
-        baldirTextView.gravity = Gravity.CENTER
-        baldirTextView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
-        row.addView(baldirTextView)
-
-        // Bel
-        val belTextView = TextView(requireContext())
-        belTextView.text = guncelBel
-        belTextView.gravity = Gravity.CENTER
-        belTextView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        val belTextView = TextView(requireContext()).apply {
+            text = guncelBel
+            gravity = Gravity.CENTER
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        }
         row.addView(belTextView)
 
+        val kalcaTextView = TextView(requireContext()).apply {
+            text = guncelKalca
+            gravity = Gravity.CENTER
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        }
+        row.addView(kalcaTextView)
 
+        val ustBacakTextView = TextView(requireContext()).apply {
+            text = guncelUstBacak
+            gravity = Gravity.CENTER
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        }
+        row.addView(ustBacakTextView)
 
-        // TableRow'u TableLayout'a ekle
-        tableLayoutBedenTakip.addView(row)
+        val baldirTextView = TextView(requireContext()).apply {
+            text = guncelBaldır
+            gravity = Gravity.CENTER
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+        }
+        row.addView(baldirTextView)
 
-
-        // EditText alanlarını temizle
-        guncelTarihEditText.text.clear()
-        guncelKolEditText.text.clear()
-        guncelGogusEditText.text.clear()
-        guncelBelEditText.text.clear()
-        guncelKalcaEditText.text.clear()
-        guncelUstBacakEditText.text.clear()
-        guncelBaldırEditText.text.clear()
+        binding.tableLayoutBedenTakip.addView(row)
+        binding.editTextGuncelTarih.text.clear()
+        binding.editTextGuncelKol.text.clear()
+        binding.editTextGuncelGogus.text.clear()
+        binding.editTextGuncelBel.text.clear()
+        binding.editTextGuncelKalca.text.clear()
+        binding.editTextGuncelUstBacak.text.clear()
+        binding.editTextGuncelBaldR.text.clear()
     }
+
 }

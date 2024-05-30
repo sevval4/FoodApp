@@ -1,3 +1,4 @@
+package com.example.foodapp
 import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.Fragment
@@ -5,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
-import com.example.foodapp.R
 import com.example.foodapp.databinding.FragmentOyunBinding
 
 class OyunFragment : Fragment() {
@@ -32,9 +32,13 @@ class OyunFragment : Fragment() {
             popupView,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-
-        // Popup penceresini gösterme
+        ).apply {
+            isFocusable = true
+            setBackgroundDrawable(null)
+        }
+        popupWindow?.setOnDismissListener {
+            popupWindow = null
+        }
         popupWindow?.showAtLocation(binding.imageView1, Gravity.CENTER, 0, 0)
     }
 

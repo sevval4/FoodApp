@@ -11,8 +11,9 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="390dp"
         android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="center|top"
         android:background="@drawable/shadow"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -45,7 +46,7 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="98dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginStart="153dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="167dp"
@@ -55,7 +56,7 @@
 
         <EditText
             android:id="@+id/datePickerEditText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="#5593B8"
@@ -141,15 +142,30 @@
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="58dp"
         android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@android:color/transparent"/>
 
         <ExpandableListView
             android:id="@+id/simpleExpandableListView"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_corners"
             android:childDivider="#4A4B50"
             android:divider="#69696F"
-            android:dividerHeight="2dp" />
+            android:dividerHeight="2dp"
+            android:padding="0dp" />
+
+
 
     </RelativeLayout>
 

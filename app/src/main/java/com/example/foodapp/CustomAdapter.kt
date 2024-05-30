@@ -16,11 +16,10 @@ import example.abhiandroid.expandablelistviewexample.GroupInfo
 class CustomAdapter(private val context: Context, private val deptList: ArrayList<GroupInfo>) :
     BaseExpandableListAdapter() {
     private var clickedCategory: String = ""
-    fun getClickedCategory(): String {
-        return clickedCategory
-    }
 
-
+    //    fun getClickedCategory(): String {
+//        return clickedCategory
+//    }
     override fun getChild(groupPosition: Int, childPosition: Int): Any {
         val productList = deptList[groupPosition].list
         return productList[childPosition]
@@ -29,7 +28,6 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
     override fun getChildId(groupPosition: Int, childPosition: Int): Long {
         return childPosition.toLong()
     }
-
 
     override fun getChildView(
         groupPosition: Int,
@@ -41,7 +39,8 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
         var convertView = convertView
         val detailInfo = getChild(groupPosition, childPosition) as ChildInfo
         if (convertView == null) {
-            val infalInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val infalInflater =
+                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             convertView = infalInflater.inflate(R.layout.child_items, null)
         }
 
@@ -49,8 +48,14 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
         sequence.text = detailInfo.sequence.trim() + ". "
         val childItem = convertView.findViewById<TextView>(R.id.childItem)
         childItem.text = detailInfo.name.trim()
-        val kalori = convertView.findViewById<TextView>(R.id.kalori)
-        kalori.text = "${detailInfo.kalori} kcal"
+
+        if (deptList[groupPosition].name != "Su Ekle") {
+            val kalori = convertView.findViewById<TextView>(R.id.kalori)
+            kalori.text = "${detailInfo.kalori} kcal"
+        } else {
+            val kalori = convertView.findViewById<TextView>(R.id.kalori)
+            kalori.visibility = View.GONE
+        }
 
         return convertView
     }
@@ -98,7 +103,8 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
             editor.apply()
 
             val fragment = KategoriFragment()
-            val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+            val transaction =
+                (context as AppCompatActivity).supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentContainer, fragment)
             transaction.addToBackStack(null)
             transaction.commit()
@@ -106,9 +112,9 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
 
         if (headerInfo.name == "Su Ekle") {
             convertView.setOnClickListener {
-                // SuFragment'a geçiş kodu
                 val suFragment = SuFragment()
-                val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                val transaction =
+                    (context as AppCompatActivity).supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.fragmentContainer, suFragment)
                 transaction.addToBackStack(null)
                 transaction.commit()
@@ -116,19 +122,16 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
         }
         if (headerInfo.name == "Egzersiz Ekle") {
             convertView.setOnClickListener {
-                // SuFragment'a geçiş kodu
                 val egzersizFragment = EgzersizFragment()
-                val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                val transaction =
+                    (context as AppCompatActivity).supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.fragmentContainer, egzersizFragment)
                 transaction.addToBackStack(null)
                 transaction.commit()
             }
         }
-
-
         return convertView
     }
-
 
     override fun hasStableIds(): Boolean {
         return true

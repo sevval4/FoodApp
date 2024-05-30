@@ -13,18 +13,36 @@ import com.example.foodapp.MainFragment
 import com.example.foodapp.R
 import com.example.foodapp.model.Besin
 
-class BesinAdapter(private val context: Context) :
+class BesinAdapter(private val context: Context,private var originalBesinList: List<Besin>) :
     RecyclerView.Adapter<BesinAdapter.BesinViewHolder>() {
 
     private val selectedItems: MutableList<Besin> = mutableListOf()
     private var onItemSelectedListener: OnItemSelectedListener? = null
-    private var besinList: List<Besin> = emptyList()
+    private var besinList: List<Besin> = originalBesinList
     private var selectedCount: Int = 0
+
 
     fun setData(newData: List<Besin>) {
         besinList = newData
         notifyDataSetChanged()
     }
+    fun filter(query: CharSequence?) {
+        val filteredList = mutableListOf<Besin>()
+        if (!query.isNullOrEmpty()) {
+            val filterPattern = query.toString().toLowerCase().trim()
+            for (besin in originalBesinList) {
+                if (besin.besinAdi.toLowerCase().contains(filterPattern)) {
+                    filteredList.add(besin)
+                }
+            }
+        } else {
+            filteredList.addAll(originalBesinList)
+        }
+        besinList = filteredList
+        notifyDataSetChanged()
+    }
+
+
 
     interface OnItemSelectedListener {
         fun onItemSelectedCountChanged(count: Int)

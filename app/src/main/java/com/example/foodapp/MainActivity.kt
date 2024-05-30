@@ -1,9 +1,13 @@
 package com.example.foodapp
 
+import HaftalikPlanFragment
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import android.util.Log
 import android.view.inputmethod.InputBinding
 import android.widget.DatePicker
@@ -27,15 +31,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 
 
-class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener, EgzersizFragment.SelectedEgzersizListener {
-    //val db = FirebaseFirestore.getInstance()
+class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener,
+    EgzersizFragment.SelectedEgzersizListener {
 
     private lateinit var binding: ActivityMainBinding
-    val fragment = EgzersizFragment()
     private var selectedItems: List<Besin> = emptyList()
-
     private var selectedEgzersiz: List<Egzersiz> = emptyList()
-
 
     override fun onSelectedItemsList(selectedItems: List<Besin>) {
         this.selectedItems = selectedItems
@@ -44,45 +45,59 @@ class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener, E
     override fun onSelectedEgzersizList(selectedEgzersiz: List<Egzersiz>) {
         this.selectedEgzersiz = selectedEgzersiz
     }
-//    override fun onSelectedEgzersizList(selectedEgzersiz: List<Egzersiz>) {
-//        this.selectedEgzersiz = selectedEgzersiz
-//    }
 
+    fun getSelectedItems(): List<Besin> = selectedItems
 
-    fun getSelectedItems(): List<Besin> {
-        return selectedItems
-    }
-
-    fun getSelectedEgzersiz():List<Egzersiz>{
-        return selectedEgzersiz
-    }
-
-
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val veri = intent.getStringExtra("veri") ?: ""
 
-        val fragment = MainFragment().apply {
-            arguments = Bundle().apply {
-                putString("veri", "gönderilecek veri $veri")
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                replace(R.id.fragmentContainer, SplashScreenFragment())
             }
         }
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
-            .commit()
+        binding.bottomNavigation.visibility = View.GONE
 
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.bottomNavigation.visibility = View.VISIBLE
+        }, SPLASH_SCREEN_DURATION)
 
+        setupBottomNavigation()
+    }
 
+    private fun setupBottomNavigation() {
         binding.bottomNavigation.apply {
-            add(CurvedBottomNavigation.Model(1, "Main", R.drawable._290849_document_done_excellent_list_note_icon))
-            add(CurvedBottomNavigation.Model(2, "", R.drawable._983529_appointment_calendar_coronavirus_date_event_icon))
-            add(CurvedBottomNavigation.Model(3, "Kategori", R.drawable._515151_body_exercise_fitness_health_meditation_icon))
-            add(CurvedBottomNavigation.Model(4, "", R.drawable._042280_dumbell_gym_healthy_life_take_exercise_training_icon))
+            add(
+                CurvedBottomNavigation.Model(
+                    1,
+                    "Main",
+                    R.drawable._290849_document_done_excellent_list_note_icon
+                )
+            )
+            add(
+                CurvedBottomNavigation.Model(
+                    2,
+                    "",
+                    R.drawable._983529_appointment_calendar_coronavirus_date_event_icon
+                )
+            )
+            add(
+                CurvedBottomNavigation.Model(
+                    3,
+                    "Kategori",
+                    R.drawable._515151_body_exercise_fitness_health_meditation_icon
+                )
+            )
+            add(
+                CurvedBottomNavigation.Model(
+                    4,
+                    "",
+                    R.drawable._042280_dumbell_gym_healthy_life_take_exercise_training_icon
+                )
+            )
             add(CurvedBottomNavigation.Model(5, "Su", R.drawable._244992_fruit_fruits_grape_icon))
 
             setOnClickMenuListener { item ->
@@ -90,7 +105,7 @@ class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener, E
                     1 -> replaceFragment(MainFragment())
                     2 -> replaceFragment(HaftalikPlanFragment())
                     3 -> replaceFragment(BedenTakipFragment())
-                    4 -> replaceFragment(AgirlikTakipFragment())
+                    4 -> replaceFragment(FruitProcessingFragment())
                     5 -> replaceFragment(KategoriFragment())
                 }
             }
@@ -99,21 +114,21 @@ class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener, E
 
         supportFragmentManager.addOnBackStackChangedListener {
             val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
-            if (currentFragment is KategoriFragment) {
-                binding.bottomNavigation.show(1)
-            } else if (currentFragment is BesinFragment) {
-                binding.bottomNavigation.show(2)
-            } else if (currentFragment is SuFragment) {
-                binding.bottomNavigation.show(3)
+            when (currentFragment) {
+                is KategoriFragment -> binding.bottomNavigation.show(1)
+                is BesinFragment -> binding.bottomNavigation.show(2)
+                is SuFragment -> binding.bottomNavigation.show(3)
             }
         }
     }
+
     private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment)
-            .commit()
+        supportFragmentManager.commit {
+            replace(R.id.fragmentContainer, fragment)
+        }
     }
 
-
-
-
+    companion object {
+        private const val SPLASH_SCREEN_DURATION = 2000L
+    }
 }
