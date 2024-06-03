@@ -21,6 +21,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+
+
     <com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
         android:id="@+id/bottomNavigation"
         android:layout_width="389dp"

@@ -1,39 +1,42 @@
 package com.example.foodapp
 
-import HaftalikPlanFragment
-import android.app.DatePickerDialog
+import com.example.foodapp.fragment.HaftalikPlanFragment
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.util.Log
-import android.view.inputmethod.InputBinding
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 
-import androidx.navigation.NavController
 import com.example.foodapp.databinding.ActivityMainBinding
+import com.example.foodapp.fragment.BedenTakipFragment
+import com.example.foodapp.fragment.BesinFragment
+import com.example.foodapp.fragment.EgzersizFragment
+import com.example.foodapp.fragment.FruitProcessingFragment
+import com.example.foodapp.fragment.KategoriFragment
+import com.example.foodapp.fragment.MainFragment
+import com.example.foodapp.fragment.SplashScreenFragment
+import com.example.foodapp.fragment.SuFragment
 import com.example.foodapp.model.Besin
 import com.example.foodapp.model.Egzersiz
-import com.google.firebase.firestore.FirebaseFirestore
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener,
     EgzersizFragment.SelectedEgzersizListener {
-
+    private lateinit var oneTapClient: SignInClient
+    private lateinit var signInRequest: BeginSignInRequest
     private lateinit var binding: ActivityMainBinding
     private var selectedItems: List<Besin> = emptyList()
     private var selectedEgzersiz: List<Egzersiz> = emptyList()
@@ -52,12 +55,25 @@ class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener,
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        oneTapClient = Identity.getSignInClient(this)
+        signInRequest = BeginSignInRequest.builder()
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    .setServerClientId(getString(R.string.your_web_client_id))
+                    .setFilterByAuthorizedAccounts(true)
+                    .build()
+            )
+            .build()
+
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
                 replace(R.id.fragmentContainer, SplashScreenFragment())
             }
         }
+
+        performGoogleLogin()
 
         binding.bottomNavigation.visibility = View.GONE
 
@@ -66,6 +82,29 @@ class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener,
         }, SPLASH_SCREEN_DURATION)
 
         setupBottomNavigation()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQ_ONE_TAP) {
+            try {
+                val credential = oneTapClient.getSignInCredentialFromIntent(data)
+                val idToken = credential.googleIdToken
+                if (idToken != null) {
+                    val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
+                    FirebaseAuth.getInstance().signInWithCredential(firebaseCredential)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                replaceFragment(MainFragment())
+                            } else {
+                                Log.e("MainActivity", "Google  giriş başarısız")
+                            }
+                        }
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            }
+        }
     }
 
     private fun setupBottomNavigation() {
@@ -122,13 +161,29 @@ class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener,
         }
     }
 
+
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.commit {
             replace(R.id.fragmentContainer, fragment)
         }
     }
 
+
+    private fun performGoogleLogin() {
+        val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.your_web_client_id))
+            .requestEmail()
+            .build()
+
+        val googleSignInClient = GoogleSignIn.getClient(this, signInOptions)
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, REQ_ONE_TAP)
+        Log.d("MainActivity", "Google giriş başarılı: $signInIntent")
+    }
+
     companion object {
         private const val SPLASH_SCREEN_DURATION = 2000L
+        private const val REQ_ONE_TAP = 1
+        private const val RC_SIGN_IN = 2
     }
 }

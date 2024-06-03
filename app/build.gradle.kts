@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
 }
 
+
 android {
     namespace = "com.example.foodapp"
     compileSdk = 34
@@ -63,6 +64,7 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.tensorflow.lite.support)
     implementation(libs.tensorflow.lite.metadata)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -73,5 +75,15 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.8.8")
 
 
+    implementation( "androidx.credentials:credentials:1.0.0")
+    implementation ( "androidx.credentials:credentials-play-services-auth:1.0.0")
+    implementation ("com.google.android.libraries.identity.googleid:googleid:1.0.0")
 
+    implementation ("com.google.android.gms:play-services-auth:19.2.0")
+    implementation ("com.google.firebase:firebase-auth:21.0.1")
 }
+
+
+
+
+

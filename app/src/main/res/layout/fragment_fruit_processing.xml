@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shadow"
-    tools:context=".FruitProcessingFragment">
+    tools:context=".fragment.FruitProcessingFragment">
 
     <Button
         android:id="@+id/camera"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/gallery"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:text="Take Picture"
         android:textAllCaps="false"
         android:textSize="21sp"
@@ -26,7 +26,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="80dp"
         android:text="Launch Gallery"
         android:textAllCaps="false"
         android:textSize="21sp"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OyunFragment">
+    tools:context=".fragment.OyunFragment">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -20,10 +20,10 @@
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/alfa_slab_one"
-            android:text="HANGİSİ KAÇ KALORİ?"
+            android:text="KAÇ KALORİ?"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
     </androidx.appcompat.widget.Toolbar>
@@ -42,7 +42,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/burger"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -50,37 +50,38 @@
                 android:src="@drawable/shine_hamburger_with_cheese" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/donut_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:paddingTop="65dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/_d_fluency_orange" />
+                android:src="@drawable/donut" />
         </LinearLayout>
 
         <!-- İkinci ikili -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:id="@+id/icecream_img"
+                android:layout_width="90dp"
+                android:layout_height="250dp"
+                android:layout_marginStart="30dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/_d_fluency_cherry_cheesecake" />
+                android:src="@drawable/ice_cream" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/cake_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/_d_fluency_toast" />
+                android:src="@drawable/cake" />
         </LinearLayout>
 
         <!-- Üçüncü ikili -->
@@ -91,20 +92,20 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="match_parent"
+                android:id="@+id/wrap_img"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/_d_fluency_salad" />
+                android:src="@drawable/wrap" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/toast_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="80dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/fast_food" />
+                android:src="@drawable/sandwich" />
         </LinearLayout>
     </LinearLayout>
 

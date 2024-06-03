@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EgzersizFragment">
+    tools:context=".fragment.EgzersizFragment">
 
     <EditText
         android:id="@+id/txt_arama"
@@ -28,6 +28,7 @@
             android:layout_width="20dp"
             android:layout_height="30dp"
             android:layout_gravity="end"
+            android:layout_marginStart="5dp"
             android:layout_weight="4"
             android:fontFamily="@font/poppins_bold"
             android:text="Egzersiz"

@@ -23,7 +23,7 @@
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/alfa_slab_one"
             android:text="ANTREMAN PROGRAMI"

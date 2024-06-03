@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfilFragment">
+    tools:context=".fragment.ProfilFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:background="#121423"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="1dp">
@@ -24,7 +24,7 @@
                 android:id="@+id/imageView15"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:src="@drawable/_703062_user_account_profile_icon"
                 android:tint="@color/white"
@@ -49,7 +49,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="6dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Şevval Çelik"
                 android:textColor="@color/white"
@@ -89,9 +89,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|end"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="25dp"
                 android:fontFamily="@font/alfa_slab_one"
-                android:text="150 cm"
+                android:text="170 cm"
                 android:textColor="@color/text_color"
                 android:textSize="16sp" />
         </androidx.cardview.widget.CardView>
@@ -127,9 +127,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|end"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="30dp"
                 android:fontFamily="@font/alfa_slab_one"
-                android:text="35 kg"
+                android:text="60 kg"
                 android:textColor="@color/text_color"
                 android:textSize="16sp" />
         </androidx.cardview.widget.CardView>
@@ -160,14 +160,14 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/txt_kalan_kalori"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|end"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="50dp"
                 android:fontFamily="@font/alfa_slab_one"
-                android:text="35 kg"
+                android:text="55 kg"
                 android:textColor="@color/text_color"
                 android:textSize="16sp" />
         </androidx.cardview.widget.CardView>
@@ -192,7 +192,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|start"
-                android:layout_marginStart="110dp"
+                android:layout_marginStart="80dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Antrenman Programı"
                 android:textAlignment="center"
@@ -200,7 +200,7 @@
                 android:textSize="20sp" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/icecream_img"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
@@ -226,7 +226,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|start"
-                android:layout_marginStart="110dp"
+                android:layout_marginStart="80dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Kaç Kalori?"
                 android:textAlignment="center"
@@ -234,14 +234,16 @@
                 android:textSize="20sp" />
 
             <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="50dp"
+                android:id="@+id/toast_img"
+                android:layout_width="40dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:src="@drawable/_394707_diet_healthy_organic_vegan_icon"
                 android:tint="@color/white" />
         </androidx.cardview.widget.CardView>
 
+
+        <!-- Bu bir yorum satırıdır.
         <androidx.cardview.widget.CardView
             android:id="@+id/rapor"
             android:layout_width="391dp"
@@ -269,12 +271,12 @@
 
             <ImageView
                 android:id="@+id/imageViewf6"
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:src="@drawable/_651909_calendar_christmas_date_icon"
                 android:tint="@color/white" />
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView> -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
