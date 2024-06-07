@@ -1,6 +1,6 @@
 package com.example.foodapp.fragment
 
-import com.example.foodapp.adapter.EgzersizAdapter
+import com.example.foodapp.adapter.ExerciseAdapter
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -18,10 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 
-class EgzersizFragment : Fragment() {
+class ExerciseFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: EgzersizAdapter
+    private lateinit var adapter: ExerciseAdapter
     private lateinit var selectedEgzersizItemsListener: SelectedEgzersizListener
     private val db = FirebaseFirestore.getInstance()
 
@@ -46,7 +46,7 @@ class EgzersizFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_egzersiz, container, false)
         recyclerView = view.findViewById(R.id.egzersizRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = EgzersizAdapter(requireContext())
+        adapter = ExerciseAdapter(requireContext())
         recyclerView.adapter = adapter
 
         return view
@@ -57,7 +57,7 @@ class EgzersizFragment : Fragment() {
 
         loadEgzersizData()
 
-        adapter.setOnItemSelectedListener(object : EgzersizAdapter.OnItemSelectedListener {
+        adapter.setOnItemSelectedListener(object : ExerciseAdapter.OnItemSelectedListener {
             override fun onItemSelectedCountChanged(count: Int) {
                 view.findViewById<TextView>(R.id.selected_text)?.text = count.toString()
             }

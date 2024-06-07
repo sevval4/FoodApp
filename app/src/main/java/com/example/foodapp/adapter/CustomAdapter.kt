@@ -11,9 +11,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodapp.R
-import com.example.foodapp.fragment.EgzersizFragment
-import com.example.foodapp.fragment.KategoriFragment
-import com.example.foodapp.fragment.SuFragment
+import com.example.foodapp.fragment.ExerciseFragment
+import com.example.foodapp.fragment.CategoryFragment
+import com.example.foodapp.fragment.WaterFragment
 import com.example.foodapp.model.ChildInfo
 import example.abhiandroid.expandablelistviewexample.GroupInfo
 
@@ -106,7 +106,7 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
             editor.putString("clickedCategory", clickedCategory)
             editor.apply()
 
-            val fragment = KategoriFragment()
+            val fragment = CategoryFragment()
             val transaction =
                 (context as AppCompatActivity).supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentContainer, fragment)
@@ -116,7 +116,7 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
 
         if (headerInfo.name == "Su Ekle") {
             convertView.setOnClickListener {
-                val suFragment = SuFragment()
+                val suFragment = WaterFragment()
                 val transaction =
                     (context as AppCompatActivity).supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.fragmentContainer, suFragment)
@@ -126,7 +126,7 @@ class CustomAdapter(private val context: Context, private val deptList: ArrayLis
         }
         if (headerInfo.name == "Egzersiz Ekle") {
             convertView.setOnClickListener {
-                val egzersizFragment = EgzersizFragment()
+                val egzersizFragment = ExerciseFragment()
                 val transaction =
                     (context as AppCompatActivity).supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.fragmentContainer, egzersizFragment)

@@ -4,8 +4,6 @@ package com.example.foodapp.fragment
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 
 import androidx.fragment.app.Fragment
@@ -44,7 +42,7 @@ class MainFragment : Fragment() {
         customAdapter = CustomAdapter(requireContext(), deptList)
 
         binding.imgProfil.setOnClickListener {
-            val profiFragment = ProfilFragment()
+            val profiFragment = ProfileFragment()
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragmentContainer, profiFragment)
                 ?.addToBackStack(null)

@@ -16,7 +16,7 @@ import com.example.foodapp.R
 import com.example.foodapp.databinding.FragmentBedenTakipBinding
 
 
-class BedenTakipFragment : Fragment() {
+class BodyTrackingFragment : Fragment() {
 
     private lateinit var binding: FragmentBedenTakipBinding
 

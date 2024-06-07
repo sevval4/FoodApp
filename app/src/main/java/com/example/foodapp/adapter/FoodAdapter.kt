@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodapp.R
 import com.example.foodapp.model.Besin
 
-class BesinAdapter(private val context: Context,private var originalBesinList: List<Besin>) :
-    RecyclerView.Adapter<BesinAdapter.BesinViewHolder>() {
+class FoodAdapter(private val context: Context, private var originalBesinList: List<Besin>) :
+    RecyclerView.Adapter<FoodAdapter.BesinViewHolder>() {
 
     private val selectedItems: MutableList<Besin> = mutableListOf()
     private var onItemSelectedListener: OnItemSelectedListener? = null

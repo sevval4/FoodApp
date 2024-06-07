@@ -1,6 +1,6 @@
 package com.example.foodapp.fragment
 
-import com.example.foodapp.adapter.BesinAdapter
+import com.example.foodapp.adapter.FoodAdapter
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -19,9 +19,9 @@ import com.example.foodapp.R
 import com.example.foodapp.model.Besin
 
 
-class BesinFragment : Fragment() {
+class FoodFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: BesinAdapter
+    private lateinit var adapter: FoodAdapter
     private lateinit var selectedItemsListener: SelectedItemsListener
 
     override fun onAttach(context: Context) {
@@ -41,7 +41,7 @@ class BesinFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         arguments?.getSerializable("besinList")?.let { besinList ->
-            adapter = BesinAdapter(requireContext(), besinList as List<Besin>)
+            adapter = FoodAdapter(requireContext(), besinList as List<Besin>)
             recyclerView.adapter = adapter
         }
         arguments?.getSerializable("besinList")?.let { besinList ->
@@ -69,7 +69,7 @@ class BesinFragment : Fragment() {
             }
         })
 
-        adapter.setOnItemSelectedListener(object : BesinAdapter.OnItemSelectedListener {
+        adapter.setOnItemSelectedListener(object : FoodAdapter.OnItemSelectedListener {
             override fun onItemSelectedCountChanged(count: Int) {
                 view.findViewById<TextView>(R.id.selected_text)?.text = count.toString()
             }

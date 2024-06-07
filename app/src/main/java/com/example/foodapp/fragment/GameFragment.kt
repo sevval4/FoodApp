@@ -9,7 +9,7 @@ import android.widget.PopupWindow
 import com.example.foodapp.R
 import com.example.foodapp.databinding.FragmentOyunBinding
 
-class OyunFragment : Fragment() {
+class GameFragment : Fragment() {
     private lateinit var binding: FragmentOyunBinding
     private var popupWindow: PopupWindow? = null
 
