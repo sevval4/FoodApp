@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.foodapp.databinding.FragmentHaftalikPlanBinding
 
-class HaftalikPlanFragment : Fragment() {
+class WeeklyPlanFragment : Fragment() {
     private lateinit var binding: FragmentHaftalikPlanBinding
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreateView(

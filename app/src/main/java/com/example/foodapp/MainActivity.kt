@@ -1,6 +1,6 @@
 package com.example.foodapp
 
-import com.example.foodapp.fragment.HaftalikPlanFragment
+import com.example.foodapp.fragment.WeeklyPlanFragment
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -12,14 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 
 import com.example.foodapp.databinding.ActivityMainBinding
-import com.example.foodapp.fragment.BedenTakipFragment
-import com.example.foodapp.fragment.BesinFragment
-import com.example.foodapp.fragment.EgzersizFragment
+import com.example.foodapp.fragment.BodyTrackingFragment
+import com.example.foodapp.fragment.FoodFragment
+import com.example.foodapp.fragment.ExerciseFragment
 import com.example.foodapp.fragment.FruitProcessingFragment
-import com.example.foodapp.fragment.KategoriFragment
+import com.example.foodapp.fragment.CategoryFragment
 import com.example.foodapp.fragment.MainFragment
 import com.example.foodapp.fragment.SplashScreenFragment
-import com.example.foodapp.fragment.SuFragment
+import com.example.foodapp.fragment.WaterFragment
 import com.example.foodapp.model.Besin
 import com.example.foodapp.model.Egzersiz
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
@@ -33,8 +33,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 
-class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener,
-    EgzersizFragment.SelectedEgzersizListener {
+class MainActivity : AppCompatActivity(), FoodFragment.SelectedItemsListener,
+    ExerciseFragment.SelectedEgzersizListener {
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
     private lateinit var binding: ActivityMainBinding
@@ -142,10 +142,10 @@ class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener,
             setOnClickMenuListener { item ->
                 when (item.id) {
                     1 -> replaceFragment(MainFragment())
-                    2 -> replaceFragment(HaftalikPlanFragment())
-                    3 -> replaceFragment(BedenTakipFragment())
+                    2 -> replaceFragment(WeeklyPlanFragment())
+                    3 -> replaceFragment(BodyTrackingFragment())
                     4 -> replaceFragment(FruitProcessingFragment())
-                    5 -> replaceFragment(KategoriFragment())
+                    5 -> replaceFragment(CategoryFragment())
                 }
             }
             show(1)
@@ -154,9 +154,9 @@ class MainActivity : AppCompatActivity(), BesinFragment.SelectedItemsListener,
         supportFragmentManager.addOnBackStackChangedListener {
             val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
             when (currentFragment) {
-                is KategoriFragment -> binding.bottomNavigation.show(1)
-                is BesinFragment -> binding.bottomNavigation.show(2)
-                is SuFragment -> binding.bottomNavigation.show(3)
+                is CategoryFragment -> binding.bottomNavigation.show(1)
+                is FoodFragment -> binding.bottomNavigation.show(2)
+                is WaterFragment -> binding.bottomNavigation.show(3)
             }
         }
     }

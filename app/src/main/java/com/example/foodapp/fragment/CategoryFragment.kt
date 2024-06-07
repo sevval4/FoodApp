@@ -13,7 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.io.Serializable
 
 
-class KategoriFragment : Fragment() {
+class CategoryFragment : Fragment() {
     private lateinit var binding: FragmentKategoriBinding
     private val db = FirebaseFirestore.getInstance()
 
@@ -72,7 +72,7 @@ class KategoriFragment : Fragment() {
     }
 
     private fun startBesinFragment(besinList: List<Besin>) {
-        val besinFragment = BesinFragment()
+        val besinFragment = FoodFragment()
         val bundle = Bundle().apply {
             putSerializable("besinList", ArrayList(besinList) as Serializable)
         }

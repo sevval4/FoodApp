@@ -11,7 +11,7 @@ import com.example.foodapp.R
 import com.example.foodapp.databinding.FragmentSuBinding
 
 
-class SuFragment : Fragment() {
+class WaterFragment : Fragment() {
     private lateinit var binding: FragmentSuBinding
 
     private val emptyGlass = R.drawable.empty_glass

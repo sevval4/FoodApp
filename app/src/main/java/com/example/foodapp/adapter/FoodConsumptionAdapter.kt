@@ -11,7 +11,7 @@ import com.example.foodapp.model.Besin
 
 
 
-class BesinTuketimAdapter(private val context: Context, private val besinList: List<Besin>) : RecyclerView.Adapter<BesinTuketimAdapter.ViewHolder>() {
+class FoodConsumptionAdapter(private val context: Context, private val besinList: List<Besin>) : RecyclerView.Adapter<FoodConsumptionAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtBesinAdi: TextView = itemView.findViewById(R.id.txt_besin_adi)

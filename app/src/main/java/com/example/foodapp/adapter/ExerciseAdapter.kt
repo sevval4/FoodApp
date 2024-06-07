@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodapp.R
 import com.example.foodapp.model.Egzersiz
 
-class EgzersizAdapter(private val context: Context) :
-    RecyclerView.Adapter<EgzersizAdapter.EgzersizViewHolder>() {
+class ExerciseAdapter(private val context: Context) :
+    RecyclerView.Adapter<ExerciseAdapter.EgzersizViewHolder>() {
 
     private val selectedItems: MutableList<Egzersiz> = mutableListOf()
     private var onItemSelectedListener: OnItemSelectedListener? = null

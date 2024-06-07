@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.BedenTakipFragment">
+        tools:context=".fragment.BodyTrackingFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"

@@ -10,7 +10,7 @@ import com.example.foodapp.R
 import com.example.foodapp.databinding.FragmentProfilBinding
 
 
-class ProfilFragment : Fragment() {
+class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfilBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +24,7 @@ class ProfilFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.oyun.setOnClickListener {
-            val fragment = OyunFragment()
+            val fragment = GameFragment()
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentContainer, fragment)
             transaction.addToBackStack(null)
