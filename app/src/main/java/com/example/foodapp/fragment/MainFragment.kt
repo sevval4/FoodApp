@@ -66,11 +66,9 @@ class MainFragment : Fragment() {
             false
         }
 
-
         binding.datePickerEditText.setOnClickListener {
             showDatePickerDialog()
         }
-
 
         return view
     }
@@ -327,7 +325,7 @@ class MainFragment : Fragment() {
 
     private fun updateRemainingCalories() {
         val totalCaloriesIn = calculateTotalCaloriesIn()
-        val remainingCalories = 2000 - totalCaloriesIn
+        val remainingCalories = 2000
         binding.txtKalanKalori.text = remainingCalories.toString()
     }
 
