@@ -8,5 +8,4 @@ https://github.com/user-attachments/assets/eca93686-d42d-4e27-81b9-e99bf0d0f04e
 
 
 
-https://github.com/sevval4/NISFIT/assets/79266627/685a0ef3-1abc-4b82-b468-a55653bf6140
 
